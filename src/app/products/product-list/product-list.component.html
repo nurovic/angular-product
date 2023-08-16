@@ -1,0 +1,16 @@
+<!-- <button (click)="onClick()"> Click me</button> -->
+<h2>Prodcut List</h2>
+
+<ul>
+    <li (click)="selectedProduct = 'WebCam'">WebCam</li>
+    <li (click)="selectedProduct = 'Microphone'">Microphone</li>
+    <li (click)="selectedProduct = 'Wireless'">Wireless</li>
+</ul>
+
+<app-product-detail 
+#product
+[name]="selectedProduct"
+(bought)="onBuy($event)"
+></app-product-detail>
+
+<!-- <span> {{product.name}} </span> -->
