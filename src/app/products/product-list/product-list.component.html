@@ -2,15 +2,36 @@
 <h2>Prodcut List</h2>
 
 <ul>
-    <li (click)="selectedProduct = 'WebCam'">WebCam</li>
-    <li (click)="selectedProduct = 'Microphone'">Microphone</li>
-    <li (click)="selectedProduct = 'Wireless'">Wireless</li>
+    <!-- <li 
+    *ngFor="let product of products; let i = index; trackBy: trackByProducts" 
+    (click)="selectedProduct = product">
+    {{i + 1}}. {{product.name}}
+</li> -->
+    <li 
+        *ngFor="let product of products | sort let i = index" 
+        (click)="selectedProduct = product">
+        {{i + 1}}. {{product.name}}
+    </li>
 </ul>
 
 <app-product-detail 
-#product
-[name]="selectedProduct"
+*ngIf="selectedProduct; else noProduct"
+[product]="selectedProduct"
 (bought)="onBuy($event)"
 ></app-product-detail>
 
+<ng-template #noProduct>
+    No Product Selected!
+</ng-template>
+
+<h3>Offers</h3>
+<ng-template appProductHost></ng-template>
 <!-- <span> {{product.name}} </span> -->
+
+
+<!-- <app-product-detail 
+*ngIF="selectedProduct"
+#product
+[name]="selectedProduct"
+(bought)="onBuy($event)"
+></app-product-detail> -->
